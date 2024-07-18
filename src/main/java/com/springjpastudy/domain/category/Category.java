@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// 실무에서 안씀
+
 @Entity
 @Getter
 @Setter
@@ -25,6 +25,7 @@ public class Category {
     private int stockQuantity;
 
     @ManyToMany
+    // 실무에서 안씀
     @JoinTable(name = "category_id",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
