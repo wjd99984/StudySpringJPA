@@ -30,5 +30,8 @@ public class Member {
 
     @OneToMany(mappedBy = "member") //fk키 sql에서는 프라이머리 키
     private List<Order> orders = new ArrayList<>();
+
+
+
 }
 
