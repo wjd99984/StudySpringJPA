@@ -4,11 +4,14 @@ package com.springjpastudy.domain.oredrItem;
 import com.springjpastudy.domain.item.Item;
 import com.springjpastudy.domain.order.Order;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class orderItem {
 
     @Id

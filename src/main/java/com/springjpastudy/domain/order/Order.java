@@ -6,9 +6,9 @@ import com.springjpastudy.domain.delivery.Delivery;
 import com.springjpastudy.domain.delivery.DeliveryStatus;
 import com.springjpastudy.domain.member.Member;
 import com.springjpastudy.domain.oredrItem.orderItem;
+import com.springjpastudy.repository.memberRepostiory.MemberRepository;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
     @Id
     @GeneratedValue
@@ -40,11 +41,14 @@ public class Order {
     private OrderStatue statue;
 
 
+
     //연관 관계 메서드
     // 양방향 일떄
-    public void setMember(Member member) {
+
+   /* public void setMember(Member member) {
         this.member = member;
-    }
+    }*/
+
     public void addOrderItem(orderItem orderItem) {
         this.orderItems.add(orderItem);
     }
