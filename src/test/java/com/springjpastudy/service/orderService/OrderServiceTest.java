@@ -68,6 +68,19 @@ class OrderServiceTest {
 
     @Test
     void 주문취소() {
+        Member member = createMember();
+        Book item= createbook("늑대",10000,10);
+
+        int orderCount = 10;
+
+        Long orderId=orderService.order(member.getId(), item.getId(), orderCount);
+
+        orderService.cancelOrder(orderId);
+
+        Order getOrder = orderRepository.findById(orderId);
+
+        assertEquals(OrderStatue.CANCEL, getOrder.getStatue(),"주문 취소시 상태는 CANCEL 이다");
+        assertEquals(10, item.getStockQuantity(),"주문이 취소된 상품은 그만큼 재고가 증가 해야함 ");
 
     }
 

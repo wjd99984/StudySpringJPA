@@ -6,10 +6,12 @@ import com.springjpastudy.domain.item.Item;
 import com.springjpastudy.domain.member.Member;
 import com.springjpastudy.domain.order.Order;
 import com.springjpastudy.domain.oredrItem.orderItem;
+import com.springjpastudy.excetion.NotEnoughException;
 import com.springjpastudy.repository.itemRepository.ItemRepository;
 import com.springjpastudy.repository.memberRepostiory.MemberRepository;
 import com.springjpastudy.repository.orderRepository.OrderRepository;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,10 +30,10 @@ public class OrderService {
     private final MemberRepository memberRepository;
     private final ItemRepository ItemRepository;
 
-
     //주문
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
+
 
         //엔티티 조회
         Member member = memberRepository.findById(memberId);
@@ -61,6 +63,7 @@ public class OrderService {
         Order order = orderRepository.findById(orderId);
         order.cancel();
     }
+
 
 
     // 주문 검색
