@@ -1,22 +1,22 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
-<head th:replace="fragments/header :: header">
-    <title>Hello</title>
+<head th:replace="~{fragments/header :: header}">
+    <title>Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <div class="container">
 
-    <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
 
     <div class="jumbotron">
         <h1>HELLO SHOP</h1>
         <p class="lead">회원 기능</p>
         <p>
             <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
-          <a  class="btn btn-lg btn-secondary" href="/members">회원 목록</a>
+            <a class="btn btn-lg btn-secondary" href="/members">회원 목록</a>
         </p>
-        
+
         <p class="lead">상품 기능</p>
         <p>
             <a class="btn btn-lg btn-secondary" href="/items/new">상품등록</a>
@@ -29,7 +29,7 @@
         </p>
     </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 
 </div> <!-- /container -->
 </body>

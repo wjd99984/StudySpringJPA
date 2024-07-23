@@ -1,9 +1,11 @@
-package com.springjpastudy.controller;
+package com.springjpastudy.controller.member;
 
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class MemberForm {
 
     @NotEmpty(message = "이름은 필수임 ")

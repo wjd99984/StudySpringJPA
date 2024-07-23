@@ -1,16 +1,17 @@
-package com.springjpastudy.controller;
+package com.springjpastudy.controller.member;
 
 import com.springjpastudy.domain.address.Address;
 import com.springjpastudy.domain.member.Member;
 import com.springjpastudy.service.memberService.MemberService;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,20 +20,35 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/members/new")
-    public String crateForm(Model model) {
+    public String createForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());
-        return "members/createMemberForm";
+        return "members/crateMemberForm";
     }
 
     @PostMapping("/members/new")
-    public String createMember(@Valid MemberForm form) {
+    public String createMember(@Valid MemberForm form, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "members/crateMemberForm";
+        }
+
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
+
         Member member = new Member();
         member.setName(form.getName());
         member.setAddress(address);
 
-        memberService.join(member);
+         memberService.join(member);
         return "redirect:/";
     }
+
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/MemberList";
+    }
+
+
 
 }
