@@ -1,6 +1,7 @@
 package com.springjpastudy.service.itemService;
 
 
+import com.springjpastudy.domain.item.Book;
 import com.springjpastudy.domain.item.Item;
 import com.springjpastudy.repository.itemRepository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,8 @@ public class ItemService {
     public void save(Item item) {
         itemRepository.save(item);
     }
+
+
 
     public List<Item> findItem() {
         return itemRepository.findAll();

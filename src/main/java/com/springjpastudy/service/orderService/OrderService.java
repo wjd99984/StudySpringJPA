@@ -10,6 +10,7 @@ import com.springjpastudy.excetion.NotEnoughException;
 import com.springjpastudy.repository.itemRepository.ItemRepository;
 import com.springjpastudy.repository.memberRepostiory.MemberRepository;
 import com.springjpastudy.repository.orderRepository.OrderRepository;
+import com.springjpastudy.repository.orderRepository.OrderSearch;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -67,7 +68,8 @@ public class OrderService {
 
 
     // 주문 검색
-   /* public List<Order> findOrders(Long orderId) {
-        return orderRepository.findAll();
-    }*/
+    public List<Order> findOrders(OrderSearch search) {
+        return orderRepository.findAllByString(search);
+    }
+
 }
