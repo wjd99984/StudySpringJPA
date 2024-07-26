@@ -24,40 +24,45 @@ public class OrderRepository {
     public Order findById(Long id) {
         return em.find(Order.class, id);
     }
-
+    
     public List<Order> findAllByString(OrderSearch orderSearch) {
-        String jpql = "select o from Order o join o.member m ";
+        
+        String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
-
+        
+        //주문 상태 검색
         if (orderSearch.getOrderStatus() != null) {
             if (isFirstCondition) {
-                jpql += "where";
+                jpql += " where";
                 isFirstCondition = false;
             } else {
-                jpql += "and";
+                jpql += " and";
             }
-            jpql += "o.status = :status";
+            jpql += " o.status = :status";
         }
-
+        
+        //회원 이름 검색
         if (StringUtils.hasText(orderSearch.getMemberName())) {
             if (isFirstCondition) {
-                jpql += "where";
+                jpql += " where";
                 isFirstCondition = false;
-            }else {
-                jpql += "and";
+            } else {
+                jpql += " and";
             }
-            jpql += "m.name like :name";
+            jpql += " m.name like :name";
         }
+        
         TypedQuery<Order> query = em.createQuery(jpql, Order.class)
                 .setMaxResults(1000);
+        
         if (orderSearch.getOrderStatus() != null) {
-            query.setParameter("status", orderSearch.getOrderStatus());
+            query = query.setParameter("status", orderSearch.getOrderStatus());
         }
         if (StringUtils.hasText(orderSearch.getMemberName())) {
-            query.setParameter("name", orderSearch.getMemberName());
+            query = query.setParameter("name", orderSearch.getMemberName());
         }
+        
         return query.getResultList();
     }
-
 
 }

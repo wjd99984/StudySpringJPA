@@ -62,6 +62,19 @@ public class MemberApiController {
 	}
 	
 	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	@Data
@@ -77,13 +90,6 @@ public class MemberApiController {
 		private String name;
 		private Address address;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	@Data
